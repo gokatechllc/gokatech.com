@@ -6,20 +6,16 @@ import WorkProcess from '../components/home/WorkProcess';
 import Testimonials from '../components/home/Testimonials';
 import CtaBanner from '../components/home/CtaBanner';
 
-interface HomePageProps {
-  onOpenQuote?: (serviceTitle?: string) => void;
-}
-
-export default function HomePage({ onOpenQuote }: HomePageProps) {
+export default function HomePage() {
   return (
     <div className="animate-fade-in">
-      <HeroSection onOpenQuote={() => onOpenQuote && onOpenQuote()} />
+      <HeroSection />
       <ClientMarquee />
-      <ServicesGrid onOpenQuote={onOpenQuote} />
+      <ServicesGrid />
       <AwardSpotlight />
       <WorkProcess />
       <Testimonials />
-      <CtaBanner onOpenQuote={() => onOpenQuote && onOpenQuote()} />
+      <CtaBanner />
     </div>
   );
 }

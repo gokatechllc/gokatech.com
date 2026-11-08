@@ -16,10 +16,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { servicesData, ServiceItem } from '../../data/servicesData';
-
-interface ServicesGridProps {
-  onOpenQuote?: (serviceTitle?: string) => void;
-}
+import { useQuote } from '../../context/QuoteContext';
 
 const iconMap: Record<string, React.ElementType> = {
   Briefcase,
@@ -34,7 +31,8 @@ const iconMap: Record<string, React.ElementType> = {
   Headphones
 };
 
-export default function ServicesGrid({ onOpenQuote }: ServicesGridProps) {
+export default function ServicesGrid() {
+  const { openQuote } = useQuote();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = ['All', 'Enterprise', 'Engineering', 'Intelligence', 'Infrastructure'];
@@ -134,14 +132,12 @@ export default function ServicesGrid({ onOpenQuote }: ServicesGridProps) {
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  {onOpenQuote && (
-                    <button
-                      onClick={() => onOpenQuote(svc.title)}
-                      className="text-xs text-slate-400 hover:text-white transition-colors"
-                    >
-                      Inquire
-                    </button>
-                  )}
+                  <button
+                    onClick={() => openQuote(svc.title)}
+                    className="text-xs text-slate-400 hover:text-white transition-colors"
+                  >
+                    Inquire
+                  </button>
                 </div>
               </div>
             );
@@ -155,7 +151,7 @@ export default function ServicesGrid({ onOpenQuote }: ServicesGridProps) {
             <p className="text-xs text-slate-400">Our solution architects in Frisco, TX provide comprehensive assessments within 24 hours.</p>
           </div>
           <button
-            onClick={() => onOpenQuote && onOpenQuote()}
+            onClick={() => openQuote()}
             className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-all shadow-md flex-shrink-0"
           >
             Schedule Technical Assessment

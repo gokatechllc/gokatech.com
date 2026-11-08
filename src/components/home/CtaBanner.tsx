@@ -1,11 +1,10 @@
 import { Sparkles, ArrowRight, PhoneCall, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useQuote } from '../../context/QuoteContext';
 
-interface CtaBannerProps {
-  onOpenQuote?: () => void;
-}
+export default function CtaBanner() {
+  const { openQuote } = useQuote();
 
-export default function CtaBanner({ onOpenQuote }: CtaBannerProps) {
   return (
     <section className="py-10 sm:py-12 bg-[#060D1A] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +29,7 @@ export default function CtaBanner({ onOpenQuote }: CtaBannerProps) {
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <button
-                onClick={onOpenQuote}
+                onClick={() => openQuote()}
                 className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-bold text-sm transition-all shadow-xl shadow-cyan-500/20 flex items-center space-x-2"
               >
                 <span>Request Project Proposal</span>

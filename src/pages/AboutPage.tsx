@@ -2,12 +2,10 @@ import { Award, ShieldCheck, CheckCircle2, Globe, Users, Trophy, Sparkles, Build
 import { companyInfo } from '../data/companyData';
 import { officesData } from '../data/officesData';
 import { Link } from 'react-router-dom';
+import { useQuote } from '../context/QuoteContext';
 
-interface AboutPageProps {
-  onOpenQuote?: () => void;
-}
-
-export default function AboutPage({ onOpenQuote }: AboutPageProps) {
+export default function AboutPage() {
+  const { openQuote } = useQuote();
   return (
     <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#060D1A] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +42,7 @@ export default function AboutPage({ onOpenQuote }: AboutPageProps) {
 
             <div className="pt-2 flex flex-wrap gap-4">
               <button
-                onClick={onOpenQuote}
+                onClick={() => openQuote()}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-xs transition-all shadow-lg shadow-blue-500/25 flex items-center space-x-2"
               >
                 <span>Partner with GOKATECH</span>

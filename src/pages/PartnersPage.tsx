@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { ShieldCheck, Building2, ExternalLink, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import { partnersData, Partner } from '../data/partnersData';
 import { Link } from 'react-router-dom';
+import { useQuote } from '../context/QuoteContext';
 
-interface PartnersPageProps {
-  onOpenQuote?: () => void;
-}
-
-export default function PartnersPage({ onOpenQuote }: PartnersPageProps) {
+export default function PartnersPage() {
+  const { openQuote } = useQuote();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = ['All', 'Enterprise Client', 'Strategic Partner', 'Staffing Network'];
@@ -113,7 +111,7 @@ export default function PartnersPage({ onOpenQuote }: PartnersPageProps) {
             </p>
           </div>
           <button
-            onClick={onOpenQuote}
+            onClick={() => openQuote()}
             className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-xs transition-all shadow-lg shadow-blue-500/25 flex-shrink-0"
           >
             Initiate Partnership Inquiry

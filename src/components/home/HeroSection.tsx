@@ -2,14 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight, ShieldCheck, Search, Award, Briefcase, ChevronRight, CheckCircle2, Globe, Users } from 'lucide-react';
 import { companyInfo } from '../../data/companyData';
+import { useQuote } from '../../context/QuoteContext';
 
-interface HeroSectionProps {
-  onOpenQuote?: () => void;
-}
-
-export default function HeroSection({ onOpenQuote }: HeroSectionProps) {
+export default function HeroSection() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const { openQuote } = useQuote();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,7 +99,7 @@ export default function HeroSection({ onOpenQuote }: HeroSectionProps) {
             {/* Action Buttons with WOW Effects */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
-                onClick={onOpenQuote}
+                onClick={() => openQuote()}
                 className="btn-wow px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-sm transition-all shadow-xl shadow-blue-500/30 hover:shadow-cyan-500/40 flex items-center space-x-2 hover:-translate-y-0.5"
               >
                 <span>Request Project Consultation</span>

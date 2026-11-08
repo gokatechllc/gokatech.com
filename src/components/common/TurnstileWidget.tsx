@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef } from 'react';
-import { ShieldCheck, RefreshCw, Lock } from 'lucide-react';
+import React, { useEffect, useRef, useState, useImperativeHandle, forwardRef, useCallback } from 'react';
+import { ShieldCheck, RefreshCw, Lock, AlertTriangle } from 'lucide-react';
 
 export interface TurnstileWidgetHandle {
   reset: () => void;
@@ -42,6 +42,10 @@ declare global {
 const TURNSTILE_SITE_KEY =
   (import.meta as any).env?.VITE_TURNSTILE_SITE_KEY || '0x4AAAAAAFzeyC3yJiAmD_LY';
 
+// How long to wait before offering a manual retry.
+const SCRIPT_TIMEOUT_MS = 12000; // Cloudflare script failed to load
+const VERIFY_TIMEOUT_MS = 20000; // widget rendered but never returned a token
+
 export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidgetProps>(
   (
     {
@@ -57,8 +61,25 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
   ) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const widgetIdRef = useRef<string | null>(null);
+
+    // Keep the latest callbacks in refs so the widget can mount ONCE and never
+    // be torn down just because the parent re-rendered with new inline handlers
+    // (that churn is what leaves Turnstile stuck on "Verifying..." forever).
+    const onVerifyRef = useRef(onVerify);
+    const onExpireRef = useRef(onExpire);
+    const onErrorRef = useRef(onError);
+    useEffect(() => {
+      onVerifyRef.current = onVerify;
+      onExpireRef.current = onExpire;
+      onErrorRef.current = onError;
+    });
+
     const [isScriptReady, setIsScriptReady] = useState<boolean>(false);
     const [widgetRendered, setWidgetRendered] = useState<boolean>(false);
+    const [verified, setVerified] = useState<boolean>(false);
+    const [timedOut, setTimedOut] = useState<boolean>(false);
+    // Bumped by the retry button to force the script + widget to re-initialise.
+    const [attempt, setAttempt] = useState<number>(0);
 
     // Provide reset and remove methods to parent components
     useImperativeHandle(ref, () => ({
@@ -66,6 +87,8 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
         if (window.turnstile && widgetIdRef.current) {
           try {
             window.turnstile.reset(widgetIdRef.current);
+            setVerified(false);
+            setTimedOut(false);
           } catch (e) {
             console.warn('Turnstile reset error:', e);
           }
@@ -84,7 +107,7 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
       }
     }));
 
-    // Ensure Cloudflare Turnstile script is loaded in DOM
+    // Ensure Cloudflare Turnstile script is loaded in DOM (single source of truth).
     useEffect(() => {
       if (typeof window === 'undefined') return;
 
@@ -102,25 +125,25 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
         script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
         script.async = true;
         script.defer = true;
-        script.onload = () => {
-          setIsScriptReady(true);
-        };
+        script.onload = () => setIsScriptReady(true);
         script.onerror = (err) => {
           console.error('Failed to load Cloudflare Turnstile API:', err);
-          onError?.(err);
+          setTimedOut(true);
+          onErrorRef.current?.(err);
         };
         document.head.appendChild(script);
       } else {
+        // Script tag exists but window.turnstile not ready yet — poll briefly.
         const interval = setInterval(() => {
           if (window.turnstile) {
             setIsScriptReady(true);
             clearInterval(interval);
           }
         }, 100);
-
         return () => clearInterval(interval);
       }
-    }, [onError]);
+      // `attempt` re-runs this so a retry can recover from a failed script load.
+    }, [attempt]);
 
     // Render Turnstile widget once script and container are ready
     useEffect(() => {
@@ -146,14 +169,18 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
           size,
           action,
           callback: (token: string) => {
-            onVerify(token);
+            setVerified(true);
+            setTimedOut(false);
+            onVerifyRef.current(token);
           },
           'expired-callback': () => {
-            onExpire?.();
+            setVerified(false);
+            onExpireRef.current?.();
           },
           'error-callback': (err: any) => {
             console.warn('Turnstile verification error:', err);
-            onError?.(err);
+            setTimedOut(true);
+            onErrorRef.current?.(err);
           }
         });
 
@@ -161,7 +188,8 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
         setWidgetRendered(true);
       } catch (err) {
         console.error('Error rendering Cloudflare Turnstile widget:', err);
-        onError?.(err);
+        setTimedOut(true);
+        onErrorRef.current?.(err);
       }
 
       return () => {
@@ -174,12 +202,51 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
           }
         }
       };
-    }, [isScriptReady, theme, size, action, onVerify, onExpire, onError]);
+      // NOTE: callbacks are read from refs, so they are intentionally NOT deps.
+      // The widget must mount once and survive parent re-renders.
+    }, [isScriptReady, theme, size, action, attempt]);
+
+    // Watchdog: if the script never loads, offer a retry instead of an endless spinner.
+    useEffect(() => {
+      if (isScriptReady) return;
+      const t = setTimeout(() => {
+        if (!window.turnstile) setTimedOut(true);
+      }, SCRIPT_TIMEOUT_MS);
+      return () => clearTimeout(t);
+    }, [isScriptReady, attempt]);
+
+    // Watchdog: if the widget renders but never returns a token, offer a retry.
+    useEffect(() => {
+      if (!widgetRendered || verified) return;
+      const t = setTimeout(() => {
+        if (!verified) setTimedOut(true);
+      }, VERIFY_TIMEOUT_MS);
+      return () => clearTimeout(t);
+    }, [widgetRendered, verified, attempt]);
+
+    const handleRetry = useCallback(() => {
+      setTimedOut(false);
+      setVerified(false);
+      if (window.turnstile && widgetIdRef.current) {
+        try {
+          window.turnstile.reset(widgetIdRef.current);
+          return;
+        } catch (e) {
+          console.warn('Turnstile retry reset failed, re-initialising:', e);
+        }
+      }
+      // Script or widget never came up — force a full re-init.
+      setIsScriptReady(!!window.turnstile);
+      setWidgetRendered(false);
+      setAttempt((n) => n + 1);
+    }, []);
+
+    const showSpinner = !widgetRendered && !timedOut;
 
     return (
       <div className={`turnstile-wrapper w-full my-3 ${className}`}>
         <div className="w-full rounded-2xl bg-[#08101E]/90 border border-slate-800/80 hover:border-cyan-500/40 p-3 sm:p-4 transition-all duration-300 shadow-inner group">
-          
+
           {/* Header pill label */}
           <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800/80 text-[11px]">
             <div className="flex items-center space-x-2 text-slate-300">
@@ -199,16 +266,34 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
           />
 
           {/* Loading state indicator */}
-          {!widgetRendered && (
+          {showSpinner && (
             <div className="flex items-center justify-center space-x-2 text-[11px] text-slate-400 py-3">
               <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
               <span>Connecting to Cloudflare Turnstile verification network...</span>
             </div>
           )}
 
+          {/* Timeout / error state with manual retry */}
+          {timedOut && !verified && (
+            <div className="flex flex-col items-center justify-center space-y-2 text-[11px] py-3">
+              <div className="flex items-center space-x-2 text-amber-400">
+                <AlertTriangle className="w-3.5 h-3.5" />
+                <span>Verification is taking longer than expected.</span>
+              </div>
+              <button
+                type="button"
+                onClick={handleRetry}
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition-colors"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Retry verification</span>
+              </button>
+            </div>
+          )}
+
           {/* Security badge footer */}
           <div className="flex items-center justify-between pt-2.5 mt-2 border-t border-slate-900 text-[10px] text-slate-500">
-            <span className="text-slate-400">Anti-Spam & Automated Bot Defense</span>
+            <span className="text-slate-400">Anti-Spam &amp; Automated Bot Defense</span>
             <span className="text-[9px] uppercase tracking-wider text-slate-500 font-mono">Cloudflare Powered</span>
           </div>
         </div>

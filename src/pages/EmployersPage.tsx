@@ -3,11 +3,7 @@ import { Building2, Users, CheckCircle2, ShieldCheck, Send, Sparkles, Clock, Awa
 import { supabase } from '../lib/supabase';
 import TurnstileWidget from '../components/common/TurnstileWidget';
 
-interface EmployersPageProps {
-  onOpenQuote?: () => void;
-}
-
-export default function EmployersPage({ onOpenQuote }: EmployersPageProps) {
+export default function EmployersPage() {
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',

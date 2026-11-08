@@ -17,10 +17,7 @@ import {
   Send 
 } from 'lucide-react';
 import { servicesData } from '../data/servicesData';
-
-interface ServiceDetailPageProps {
-  onOpenQuote?: (serviceTitle?: string) => void;
-}
+import { useQuote } from '../context/QuoteContext';
 
 const iconMap: Record<string, React.ElementType> = {
   Briefcase,
@@ -35,7 +32,8 @@ const iconMap: Record<string, React.ElementType> = {
   Headphones
 };
 
-export default function ServiceDetailPage({ onOpenQuote }: ServiceDetailPageProps) {
+export default function ServiceDetailPage() {
+  const { openQuote } = useQuote();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
@@ -82,7 +80,7 @@ export default function ServiceDetailPage({ onOpenQuote }: ServiceDetailPageProp
 
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
-                onClick={() => onOpenQuote && onOpenQuote(service.title)}
+                onClick={() => openQuote(service.title)}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-xs transition-all shadow-lg shadow-blue-500/25 flex items-center space-x-2"
               >
                 <span>Request Project Proposal</span>
@@ -176,7 +174,7 @@ export default function ServiceDetailPage({ onOpenQuote }: ServiceDetailPageProp
                 Our team in Frisco, Texas will formulate a tailored architectural roadmap and cost estimate.
               </p>
               <button
-                onClick={() => onOpenQuote && onOpenQuote(service.title)}
+                onClick={() => openQuote(service.title)}
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold text-xs transition-all shadow-lg shadow-blue-500/25"
               >
                 Inquire About This Service

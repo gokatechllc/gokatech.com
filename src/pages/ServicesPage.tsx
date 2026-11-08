@@ -17,10 +17,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { servicesData, ServiceItem } from '../data/servicesData';
-
-interface ServicesPageProps {
-  onOpenQuote?: (serviceTitle?: string) => void;
-}
+import { useQuote } from '../context/QuoteContext';
 
 const iconMap: Record<string, React.ElementType> = {
   Briefcase,
@@ -35,7 +32,8 @@ const iconMap: Record<string, React.ElementType> = {
   Headphones
 };
 
-export default function ServicesPage({ onOpenQuote }: ServicesPageProps) {
+export default function ServicesPage() {
+  const { openQuote } = useQuote();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -170,14 +168,12 @@ export default function ServicesPage({ onOpenQuote }: ServicesPageProps) {
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </Link>
 
-                  {onOpenQuote && (
-                    <button
-                      onClick={() => onOpenQuote(svc.title)}
-                      className="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
-                    >
-                      Quote
-                    </button>
-                  )}
+                  <button
+                    onClick={() => openQuote(svc.title)}
+                    className="px-3 py-1 rounded-lg text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors"
+                  >
+                    Quote
+                  </button>
                 </div>
               </div>
             );
@@ -218,7 +214,7 @@ export default function ServicesPage({ onOpenQuote }: ServicesPageProps) {
             </div>
             <div className="md:col-span-4 text-md-right flex justify-start md:justify-end">
               <button
-                onClick={() => onOpenQuote && onOpenQuote('Product Configuration & Implementation')}
+                onClick={() => openQuote('Product Configuration & Implementation')}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold text-xs transition-all shadow-lg shadow-blue-500/25"
               >
                 Schedule Implementation Review
