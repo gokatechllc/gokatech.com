@@ -98,10 +98,10 @@ export default function AdminQuotes() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white font-heading">
+          <h1 className="text-2xl font-bold text-[#102039] font-heading">
             Client Quote & Consultation Requests
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600">
             Inbound prospective client RFPs submitted via web consultation modals
           </p>
         </div>
@@ -109,14 +109,14 @@ export default function AdminQuotes() {
         <div className="flex items-center space-x-2">
           <button
             onClick={exportCSV}
-            className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-xs text-slate-300 hover:text-white transition-colors flex items-center space-x-1.5"
+            className="px-3.5 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-xs text-slate-700 hover:text-[#102039] transition-colors flex items-center space-x-1.5"
           >
-            <Download className="w-3.5 h-3.5 text-cyan-400" />
+            <Download className="w-3.5 h-3.5 text-blue-600" />
             <span>Export CSV</span>
           </button>
           <button
             onClick={fetchQuotes}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-white"
+            className="p-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-600 hover:text-[#102039]"
             title="Refresh"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -125,7 +125,7 @@ export default function AdminQuotes() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
           <input
@@ -133,16 +133,16 @@ export default function AdminQuotes() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by client, company, service..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:border-cyan-400 focus:outline-none"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] placeholder-slate-500 text-xs focus:border-blue-600 focus:outline-none"
           />
         </div>
 
         <div className="flex items-center space-x-2 w-full sm:w-auto">
-          <span className="text-xs text-slate-400">Status:</span>
+          <span className="text-xs text-slate-600">Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+            className="px-3 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] text-xs focus:border-blue-600 focus:outline-none"
           >
             <option value="All">All Statuses</option>
             <option value="New">New</option>
@@ -155,10 +155,10 @@ export default function AdminQuotes() {
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-xl overflow-hidden">
+      <div className="rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-900/90 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+            <thead className="bg-white/90 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="py-3.5 px-4">Client</th>
                 <th className="py-3.5 px-4">Capability</th>
@@ -168,7 +168,7 @@ export default function AdminQuotes() {
                 <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
+            <tbody className="divide-y divide-slate-200/80 text-slate-700">
               {filteredQuotes.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-8 text-center text-slate-500">
@@ -177,14 +177,14 @@ export default function AdminQuotes() {
                 </tr>
               ) : (
                 filteredQuotes.map((q) => (
-                  <tr key={q.id} className="hover:bg-slate-900/50 transition-colors">
+                  <tr key={q.id} className="hover:bg-white/50 transition-colors">
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-white">{q.name}</div>
-                      <div className="text-[11px] text-slate-400">{q.company || 'Private'}</div>
+                      <div className="font-bold text-[#102039]">{q.name}</div>
+                      <div className="text-[11px] text-slate-600">{q.company || 'Private'}</div>
                       <div className="text-[10px] text-slate-500">{q.email}</div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="font-medium text-cyan-300">{q.service}</span>
+                      <span className="font-medium text-blue-500">{q.service}</span>
                     </td>
                     <td className="py-3.5 px-4">
                       <div>{q.budget}</div>
@@ -196,13 +196,13 @@ export default function AdminQuotes() {
                         onChange={(e) => handleStatusChange(q.id, e.target.value)}
                         className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border focus:outline-none ${
                           q.status === 'New'
-                            ? 'bg-blue-500/10 text-cyan-400 border-blue-500/30'
+                            ? 'bg-blue-500/10 text-blue-600 border-blue-500/30'
                             : q.status === 'In Review'
                             ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
                             : q.status === 'Proposal Sent'
                             ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : q.status === 'Closed'
-                            ? 'bg-slate-800 text-slate-400 border-slate-700'
+                            ? 'bg-slate-100 text-slate-400 border-slate-300'
                             : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                         }`}
                       >
@@ -219,7 +219,7 @@ export default function AdminQuotes() {
                     <td className="py-3.5 px-4 text-right space-x-2">
                       <button
                         onClick={() => setSelectedQuote(q)}
-                        className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        className="p-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-[#102039] hover:bg-slate-200 transition-colors"
                         title="View Details"
                       >
                         <Eye className="w-3.5 h-3.5" />
@@ -242,33 +242,33 @@ export default function AdminQuotes() {
 
       {/* Details Modal */}
       {selectedQuote && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg rounded-2xl bg-[#0B1528] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-2xl bg-[#FFFFFF] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
             <button
               onClick={() => setSelectedQuote(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-600 hover:text-[#102039]"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-white font-heading">
+            <h3 className="text-lg font-bold text-[#102039] font-heading">
               Quote Request Details
             </h3>
 
-            <div className="space-y-2 text-xs bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-              <p><strong className="text-slate-400">Client:</strong> <span className="text-white font-medium">{selectedQuote.name}</span></p>
-              <p><strong className="text-slate-400">Company:</strong> <span className="text-white">{selectedQuote.company || 'N/A'}</span></p>
-              <p><strong className="text-slate-400">Email:</strong> <a href={`mailto:${selectedQuote.email}`} className="text-cyan-400 hover:underline">{selectedQuote.email}</a></p>
-              <p><strong className="text-slate-400">Phone:</strong> <a href={`tel:${selectedQuote.phone}`} className="text-cyan-400 hover:underline">{selectedQuote.phone || 'N/A'}</a></p>
-              <p><strong className="text-slate-400">Service:</strong> <span className="text-cyan-300 font-semibold">{selectedQuote.service}</span></p>
-              <p><strong className="text-slate-400">Budget:</strong> <span className="text-emerald-400 font-medium">{selectedQuote.budget}</span></p>
-              <p><strong className="text-slate-400">Timeline:</strong> <span className="text-white">{selectedQuote.timeline}</span></p>
-              <p><strong className="text-slate-400">Date Received:</strong> <span className="text-slate-400">{new Date(selectedQuote.created_at).toLocaleString()}</span></p>
+            <div className="space-y-2 text-xs bg-white/80 p-4 rounded-xl border border-slate-200">
+              <p><strong className="text-slate-600">Client:</strong> <span className="text-[#102039] font-medium">{selectedQuote.name}</span></p>
+              <p><strong className="text-slate-600">Company:</strong> <span className="text-[#102039]">{selectedQuote.company || 'N/A'}</span></p>
+              <p><strong className="text-slate-600">Email:</strong> <a href={`mailto:${selectedQuote.email}`} className="text-blue-600 hover:underline">{selectedQuote.email}</a></p>
+              <p><strong className="text-slate-600">Phone:</strong> <a href={`tel:${selectedQuote.phone}`} className="text-blue-600 hover:underline">{selectedQuote.phone || 'N/A'}</a></p>
+              <p><strong className="text-slate-600">Service:</strong> <span className="text-blue-500 font-semibold">{selectedQuote.service}</span></p>
+              <p><strong className="text-slate-600">Budget:</strong> <span className="text-emerald-400 font-medium">{selectedQuote.budget}</span></p>
+              <p><strong className="text-slate-600">Timeline:</strong> <span className="text-[#102039]">{selectedQuote.timeline}</span></p>
+              <p><strong className="text-slate-600">Date Received:</strong> <span className="text-slate-600">{new Date(selectedQuote.created_at).toLocaleString()}</span></p>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Project Message</label>
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-36 overflow-y-auto">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Project Message</label>
+              <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200 text-xs text-slate-700 leading-relaxed max-h-36 overflow-y-auto">
                 {selectedQuote.message || 'No additional message provided.'}
               </div>
             </div>
@@ -276,7 +276,7 @@ export default function AdminQuotes() {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setSelectedQuote(null)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#102039] text-xs font-semibold"
               >
                 Close
               </button>

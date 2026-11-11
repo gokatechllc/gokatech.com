@@ -41,15 +41,15 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
     <header
       className={`sticky top-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#070F1E]/95 backdrop-blur-md shadow-xl border-b border-blue-500/10 py-3'
-          : 'bg-[#070F1E]/80 backdrop-blur-sm border-b border-slate-800/60 py-4'
+          ? 'bg-[#FFFFFF]/95 backdrop-blur-md shadow-xl border-b border-blue-500/10 py-3'
+          : 'bg-[#FFFFFF]/80 backdrop-blur-sm border-b border-slate-200/60 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative flex items-center justify-center p-1.5 rounded-xl bg-slate-900/90 border border-slate-700/60 group-hover:border-blue-500/40 transition-all shadow-md">
+            <div className="relative flex items-center justify-center p-1.5 rounded-xl bg-white/90 border border-slate-300/60 group-hover:border-blue-500/40 transition-all shadow-md">
               <img
                 src="/assets/logo.png"
                 alt="GOKATECH"
@@ -59,15 +59,15 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
                   (e.target as HTMLElement).style.display = 'none';
                 }}
               />
-              <span className="hidden group-only:inline-block font-extrabold text-white text-lg tracking-wider">
-                GOKA<span className="text-cyan-400">TECH</span>
+              <span className="hidden group-only:inline-block font-extrabold text-[#102039] text-lg tracking-wider">
+                GOKA<span className="text-blue-600">TECH</span>
               </span>
             </div>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-extrabold tracking-tight text-white font-heading leading-tight">
-                GOKA<span className="text-cyan-400">TECH</span>
+              <span className="text-lg md:text-xl font-extrabold tracking-tight text-[#102039] font-heading leading-tight">
+                GOKA<span className="text-blue-600">TECH</span>
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-400 font-medium">
+              <span className="text-[10px] uppercase tracking-wider text-slate-600 font-medium">
                 Where Innovation Meets Excellence
               </span>
             </div>
@@ -90,8 +90,8 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
                       to={link.path}
                       className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-1 ${
                         isActive || location.pathname.startsWith('/services')
-                          ? 'text-cyan-400 bg-blue-500/10'
-                          : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                          ? 'text-blue-600 bg-blue-500/10'
+                          : 'text-slate-700 hover:text-blue-600 hover:bg-slate-100/80'
                       }`}
                     >
                       <span>{link.name}</span>
@@ -100,31 +100,31 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
 
                     {/* Dropdown Menu */}
                     {servicesDropdownOpen && (
-                      <div className="absolute top-full left-0 w-96 rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-2xl p-3 z-50 animate-fade-in">
-                        <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider px-3 py-1.5 border-b border-slate-800 flex items-center justify-between">
+                      <div className="absolute top-full left-0 w-96 rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-2xl p-3 z-50 animate-fade-in">
+                        <div className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider px-3 py-1.5 border-b border-slate-200 flex items-center justify-between">
                           <span>Core Capabilities</span>
-                          <span className="text-cyan-400 font-normal">10 Services</span>
+                          <span className="text-blue-600 font-normal">10 Services</span>
                         </div>
                         <div className="max-h-80 overflow-y-auto py-2 space-y-1">
                           {servicesData.map((svc) => (
                             <Link
                               key={svc.id}
                               to={`/services/${svc.slug}`}
-                              className="block p-2.5 rounded-xl hover:bg-slate-800/80 transition-colors group/item"
+                              className="block p-2.5 rounded-xl hover:bg-slate-100/80 transition-colors group/item"
                             >
-                              <div className="text-xs font-semibold text-white group-hover/item:text-cyan-400 transition-colors">
+                              <div className="text-xs font-semibold text-[#102039] group-hover/item:text-blue-600 transition-colors">
                                 {svc.title}
                               </div>
-                              <div className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">
+                              <div className="text-[11px] text-slate-600 line-clamp-1 mt-0.5">
                                 {svc.shortDesc}
                               </div>
                             </Link>
                           ))}
                         </div>
-                        <div className="pt-2 border-t border-slate-800 px-3">
+                        <div className="pt-2 border-t border-slate-200 px-3">
                           <Link
                             to="/services"
-                            className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center justify-between py-1"
+                            className="text-xs font-semibold text-blue-600 hover:text-blue-500 flex items-center justify-between py-1"
                           >
                             <span>Explore All Capabilities</span>
                             <span>&rarr;</span>
@@ -142,8 +142,8 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
                   to={link.path}
                   className={`relative px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-cyan-400 bg-blue-500/10'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                      ? 'text-blue-600 bg-blue-500/10'
+                      : 'text-slate-700 hover:text-blue-600 hover:bg-slate-100/80'
                   }`}
                 >
                   <span>{link.name}</span>
@@ -161,15 +161,15 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
           <div className="hidden lg:flex items-center space-x-3">
             <Link
               to="/jobs"
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-200 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 transition-colors flex items-center space-x-1.5"
+              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-800 hover:text-[#102039] bg-slate-100/80 hover:bg-slate-200/80 border border-slate-300 transition-colors flex items-center space-x-1.5"
             >
-              <Briefcase className="w-3.5 h-3.5 text-cyan-400" />
+              <Briefcase className="w-3.5 h-3.5 text-blue-600" />
               <span>Job Board</span>
             </Link>
 
             <button
               onClick={onOpenQuote}
-              className="btn-wow px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-cyan-500/40 hover:-translate-y-0.5 flex items-center space-x-1.5"
+              className="btn-wow px-4 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-500 hover:to-blue-600 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-600/40 hover:-translate-y-0.5 flex items-center space-x-1.5"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Get a Quote</span>
@@ -186,7 +186,7 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none"
+              className="p-2 rounded-lg text-slate-700 hover:text-[#102039] hover:bg-slate-100 focus:outline-none"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -196,15 +196,15 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
 
         {/* Mobile menu dropdown */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-6 pt-2 border-t border-slate-800 space-y-1">
+          <div className="lg:hidden mt-4 pb-6 pt-2 border-t border-slate-200 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 className={`block px-3 py-2.5 rounded-xl text-base font-medium ${
                   location.pathname === link.path
-                    ? 'text-cyan-400 bg-blue-500/10'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                    ? 'text-blue-600 bg-blue-500/10'
+                    : 'text-slate-700 hover:text-blue-600 hover:bg-slate-100'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -218,16 +218,16 @@ export default function Navbar({ onOpenQuote }: NavbarProps) {
               </Link>
             ))}
 
-            <div className="pt-4 border-t border-slate-800 grid grid-cols-2 gap-2">
+            <div className="pt-4 border-t border-slate-200 grid grid-cols-2 gap-2">
               <Link
                 to="/employee-portal"
-                className="py-2.5 px-3 rounded-xl bg-slate-800 text-center text-xs font-semibold text-slate-300"
+                className="py-2.5 px-3 rounded-xl bg-slate-100 text-center text-xs font-semibold text-slate-700"
               >
                 Employee Portal
               </Link>
               <button
                 onClick={onOpenQuote}
-                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-center text-xs font-semibold text-white"
+                className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-blue-600 text-center text-xs font-semibold text-white"
               >
                 Request Quote
               </button>

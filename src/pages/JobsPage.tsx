@@ -106,7 +106,7 @@ export default function JobsPage() {
   });
 
   return (
-    <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#060D1A] animate-fade-in">
+    <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F7F9FC] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Banner */}
         <div className="max-w-3xl mb-8 sm:mb-10 space-y-3">
@@ -114,27 +114,27 @@ export default function JobsPage() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>JobAway Career & Staffing Portal</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight font-heading leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#102039] tracking-tight font-heading leading-tight">
             Explore Open Careers & <br />
             <span className="text-gradient">Engineering Roles</span>
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
             Be part of transformative projects that push technical boundaries. Join our global team of passionate developers, architects, and QA engineers across the USA, Germany, and India.
           </p>
         </div>
 
         {/* JobAway Style Comprehensive Filter Box */}
-        <div className="p-5 sm:p-6 rounded-3xl bg-[#0B1528] border border-blue-500/20 shadow-2xl mb-8 space-y-4">
+        <div className="p-5 sm:p-6 rounded-3xl bg-[#FFFFFF] border border-blue-500/20 shadow-2xl mb-8 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
             {/* Search Query */}
             <div className="md:col-span-5 relative">
-              <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5" />
+              <Search className="w-5 h-5 text-slate-600 absolute left-3.5 top-3.5" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Title, skill (LoadRunner, Dynamics, Python, AWS)..."
-                className="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-sm focus:border-cyan-400 focus:outline-none"
+                className="w-full pl-11 pr-4 py-3 rounded-xl bg-white border border-slate-300 text-[#102039] placeholder-slate-500 text-sm focus:border-blue-600 focus:outline-none"
               />
             </div>
 
@@ -143,7 +143,7 @@ export default function JobsPage() {
               <select
                 value={selectedDept}
                 onChange={(e) => setSelectedDept(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                className="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-[#102039] text-sm focus:border-blue-600 focus:outline-none"
               >
                 {jobDepartments.map(d => (
                   <option key={d} value={d}>{d}</option>
@@ -156,7 +156,7 @@ export default function JobsPage() {
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full px-3 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                className="w-full px-3 py-3 rounded-xl bg-white border border-slate-300 text-[#102039] text-sm focus:border-blue-600 focus:outline-none"
               >
                 {jobLocations.map(l => (
                   <option key={l} value={l}>{l}</option>
@@ -169,7 +169,7 @@ export default function JobsPage() {
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full px-3 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                className="w-full px-3 py-3 rounded-xl bg-white border border-slate-300 text-[#102039] text-sm focus:border-blue-600 focus:outline-none"
               >
                 {jobTypes.map(t => (
                   <option key={t} value={t}>{t}</option>
@@ -179,16 +179,16 @@ export default function JobsPage() {
           </div>
 
           {/* Active filters pill counter & reset button */}
-          <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
+          <div className="pt-2 border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
             <div>
-              Showing <strong className="text-white">{filteredJobs.length}</strong> available openings
-              {searchQuery && <span> matching "<span className="text-cyan-400">{searchQuery}</span>"</span>}
+              Showing <strong className="text-[#102039]">{filteredJobs.length}</strong> available openings
+              {searchQuery && <span> matching "<span className="text-blue-600">{searchQuery}</span>"</span>}
             </div>
 
             {(searchQuery || selectedDept !== 'All Departments' || selectedLocation !== 'All Locations' || selectedType !== 'All Types') && (
               <button
                 onClick={resetFilters}
-                className="flex items-center space-x-1 text-cyan-400 hover:text-cyan-300 font-medium"
+                className="flex items-center space-x-1 text-blue-600 hover:text-blue-500 font-medium"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Reset All Filters</span>
@@ -209,10 +209,10 @@ export default function JobsPage() {
         </div>
 
         {filteredJobs.length === 0 && (
-          <div className="text-center py-20 bg-slate-900/50 rounded-3xl border border-slate-800 mb-20 space-y-3">
+          <div className="text-center py-20 bg-white/50 rounded-3xl border border-slate-200 mb-20 space-y-3">
             <Briefcase className="w-12 h-12 text-slate-500 mx-auto" />
-            <h3 className="text-xl font-bold text-white">No job openings found</h3>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
+            <h3 className="text-xl font-bold text-[#102039]">No job openings found</h3>
+            <p className="text-xs text-slate-600 max-w-md mx-auto">
               We couldn't find any positions matching your specific criteria. Try adjusting your search filters or send your resume for general consideration.
             </p>
             <button
@@ -225,43 +225,43 @@ export default function JobsPage() {
         )}
 
         {/* Culture & Why Choose GOKATECH */}
-        <div className="rounded-3xl bg-gradient-to-br from-[#0C172E] via-[#091224] to-[#0A162F] border border-blue-500/20 p-8 sm:p-12 mb-20 shadow-2xl">
+        <div className="rounded-3xl bg-gradient-to-br from-[#EAF2FB] via-white to-[#F2F7FD] border border-blue-100 p-8 sm:p-12 mb-20 shadow-lg">
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#102039] font-heading">
               Why Choose a Career at GOKATECH?
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
+            <p className="text-xs sm:text-sm text-slate-700">
               We shape the future of technology while creating a workplace that champions innovation, collaboration, and personal growth.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-2">
-              <h3 className="text-base font-bold text-white">Work on Trailblazing Projects</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-6 rounded-2xl bg-white/70 border border-slate-200 space-y-2">
+              <h3 className="text-base font-bold text-[#102039]">Work on Trailblazing Projects</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Be part of transformative software architectures that push boundaries and solve real-world problems for Fortune 500 leaders.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-2">
-              <h3 className="text-base font-bold text-white">A Culture of Collaboration</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-6 rounded-2xl bg-white/70 border border-slate-200 space-y-2">
+              <h3 className="text-base font-bold text-[#102039]">A Culture of Collaboration</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Join a global team of passionate, supportive, and forward-thinking engineers across North America, Germany, and India.
               </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-2">
-              <h3 className="text-base font-bold text-white">Growth That Empowers You</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-6 rounded-2xl bg-white/70 border border-slate-200 space-y-2">
+              <h3 className="text-base font-bold text-[#102039]">Growth That Empowers You</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
                 Fuel your career with certifications, mentorship programs, and leadership pathways tailored to unlock your true potential.
               </p>
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-slate-800/80 text-center">
-            <p className="text-xs text-slate-400">
+          <div className="mt-8 pt-8 border-t border-slate-200/80 text-center">
+            <p className="text-xs text-slate-600">
               Ready to transform your career? Send your updated profile to{' '}
-              <a href="mailto:info@gokatech.com" className="text-cyan-400 font-bold hover:underline">
+              <a href="mailto:info@gokatech.com" className="text-blue-600 font-bold hover:underline">
                 info@gokatech.com
               </a>{' '}
               or apply to any open opening above!

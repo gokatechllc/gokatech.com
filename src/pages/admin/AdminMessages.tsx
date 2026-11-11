@@ -86,17 +86,17 @@ export default function AdminMessages() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white font-heading">
+          <h1 className="text-2xl font-bold text-[#102039] font-heading">
             Contact Inquiries & Communications
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600">
             Messages dispatched from the public website contact portal
           </p>
         </div>
 
         <button
           onClick={fetchMessages}
-          className="p-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-white self-start sm:self-auto"
+          className="p-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-600 hover:text-[#102039] self-start sm:self-auto"
           title="Refresh"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -104,7 +104,7 @@ export default function AdminMessages() {
       </div>
 
       {/* Filter and Search */}
-      <div className="p-4 rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
           <input
@@ -112,16 +112,16 @@ export default function AdminMessages() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search sender, email, department..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:border-cyan-400 focus:outline-none"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] placeholder-slate-500 text-xs focus:border-blue-600 focus:outline-none"
           />
         </div>
 
         <div className="flex items-center space-x-2 w-full sm:w-auto">
-          <span className="text-xs text-slate-400">Status:</span>
+          <span className="text-xs text-slate-600">Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+            className="px-3 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] text-xs focus:border-blue-600 focus:outline-none"
           >
             <option value="All">All Inquiries</option>
             <option value="Unread">Unread</option>
@@ -133,10 +133,10 @@ export default function AdminMessages() {
       </div>
 
       {/* Messages Table */}
-      <div className="rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-xl overflow-hidden">
+      <div className="rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-900/90 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+            <thead className="bg-white/90 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="py-3.5 px-4">Sender</th>
                 <th className="py-3.5 px-4">Department / Subject</th>
@@ -146,7 +146,7 @@ export default function AdminMessages() {
                 <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
+            <tbody className="divide-y divide-slate-200/80 text-slate-700">
               {filteredMessages.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-8 text-center text-slate-500">
@@ -155,21 +155,21 @@ export default function AdminMessages() {
                 </tr>
               ) : (
                 filteredMessages.map((m) => (
-                  <tr key={m.id} className="hover:bg-slate-900/50 transition-colors">
+                  <tr key={m.id} className="hover:bg-white/50 transition-colors">
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-white flex items-center space-x-1.5">
+                      <div className="font-bold text-[#102039] flex items-center space-x-1.5">
                         {m.status === 'Unread' && (
-                          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                          <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
                         )}
                         <span>{m.name}</span>
                       </div>
-                      <div className="text-[11px] text-slate-400">{m.email}</div>
+                      <div className="text-[11px] text-slate-600">{m.email}</div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="font-semibold text-cyan-300 block">{m.department}</span>
-                      <span className="text-[10px] text-slate-400">{m.subject || 'Inquiry'}</span>
+                      <span className="font-semibold text-blue-500 block">{m.department}</span>
+                      <span className="text-[10px] text-slate-600">{m.subject || 'Inquiry'}</span>
                     </td>
-                    <td className="py-3.5 px-4 max-w-xs truncate text-slate-400">
+                    <td className="py-3.5 px-4 max-w-xs truncate text-slate-600">
                       {m.message}
                     </td>
                     <td className="py-3.5 px-4">
@@ -180,10 +180,10 @@ export default function AdminMessages() {
                           m.status === 'Unread'
                             ? 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                             : m.status === 'Read'
-                            ? 'bg-blue-500/10 text-cyan-400 border-blue-500/30'
+                            ? 'bg-blue-500/10 text-blue-600 border-blue-500/30'
                             : m.status === 'Responded'
                             ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
-                            : 'bg-slate-800 text-slate-400 border-slate-700'
+                            : 'bg-slate-100 text-slate-400 border-slate-300'
                         }`}
                       >
                         <option value="Unread">Unread</option>
@@ -198,7 +198,7 @@ export default function AdminMessages() {
                     <td className="py-3.5 px-4 text-right space-x-2">
                       <button
                         onClick={() => openMessageModal(m)}
-                        className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        className="p-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-[#102039] hover:bg-slate-200 transition-colors"
                         title="Read Full Message"
                       >
                         <Eye className="w-3.5 h-3.5" />
@@ -221,30 +221,30 @@ export default function AdminMessages() {
 
       {/* Message Modal */}
       {selectedMsg && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg rounded-2xl bg-[#0B1528] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-2xl bg-[#FFFFFF] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
             <button
               onClick={() => setSelectedMsg(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-600 hover:text-[#102039]"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-white font-heading">
+            <h3 className="text-lg font-bold text-[#102039] font-heading">
               Contact Inquiry
             </h3>
 
-            <div className="space-y-1.5 text-xs bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-              <p><strong className="text-slate-400">From:</strong> <span className="text-white font-bold">{selectedMsg.name}</span></p>
-              <p><strong className="text-slate-400">Email:</strong> <a href={`mailto:${selectedMsg.email}`} className="text-cyan-400 hover:underline">{selectedMsg.email}</a></p>
-              <p><strong className="text-slate-400">Phone:</strong> <span className="text-slate-200">{selectedMsg.phone || 'N/A'}</span></p>
-              <p><strong className="text-slate-400">Department:</strong> <span className="text-cyan-300 font-semibold">{selectedMsg.department}</span></p>
-              <p><strong className="text-slate-400">Subject:</strong> <span className="text-white">{selectedMsg.subject || 'General Inquiry'}</span></p>
+            <div className="space-y-1.5 text-xs bg-white/80 p-4 rounded-xl border border-slate-200">
+              <p><strong className="text-slate-600">From:</strong> <span className="text-[#102039] font-bold">{selectedMsg.name}</span></p>
+              <p><strong className="text-slate-600">Email:</strong> <a href={`mailto:${selectedMsg.email}`} className="text-blue-600 hover:underline">{selectedMsg.email}</a></p>
+              <p><strong className="text-slate-600">Phone:</strong> <span className="text-slate-800">{selectedMsg.phone || 'N/A'}</span></p>
+              <p><strong className="text-slate-600">Department:</strong> <span className="text-blue-500 font-semibold">{selectedMsg.department}</span></p>
+              <p><strong className="text-slate-600">Subject:</strong> <span className="text-[#102039]">{selectedMsg.subject || 'General Inquiry'}</span></p>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Message Content</label>
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Message Content</label>
+              <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200 text-xs text-slate-700 leading-relaxed max-h-48 overflow-y-auto whitespace-pre-wrap">
                 {selectedMsg.message}
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function AdminMessages() {
 
               <button
                 onClick={() => setSelectedMsg(null)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#102039] text-xs font-semibold"
               >
                 Close
               </button>

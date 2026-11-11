@@ -47,7 +47,7 @@ export default function FloatingScrollProgress() {
     >
       <button
         onClick={scrollToTop}
-        className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-slate-900/90 hover:bg-slate-800 text-cyan-400 hover:text-white border border-cyan-500/30 hover:border-cyan-400 shadow-xl shadow-cyan-950/50 backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95"
+        className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-white/90 hover:bg-slate-100 text-blue-600 hover:text-[#102039] border border-blue-600/30 hover:border-blue-600 shadow-xl shadow-blue-50/50 backdrop-blur-md transition-all duration-300 hover:scale-110 active:scale-95"
         title={`Scroll to top (${scrollProgress}%)`}
         aria-label="Scroll back to top"
       >
@@ -76,7 +76,7 @@ export default function FloatingScrollProgress() {
           />
           <defs>
             <linearGradient id="gradient-ring" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38BDF8" />
+              <stop offset="0%" stopColor="#007BFF" />
               <stop offset="100%" stopColor="#3B82F6" />
             </linearGradient>
           </defs>
@@ -86,7 +86,7 @@ export default function FloatingScrollProgress() {
         <ArrowUp className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
 
         {/* Ambient Ring Glow */}
-        <div className="absolute inset-0 rounded-full bg-cyan-400/10 blur-sm pointer-events-none group-hover:bg-cyan-400/25 transition-all" />
+        <div className="absolute inset-0 rounded-full bg-blue-600/10 blur-sm pointer-events-none group-hover:bg-blue-600/25 transition-all" />
       </button>
     </div>
   );

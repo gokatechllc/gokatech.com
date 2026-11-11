@@ -7,28 +7,37 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Brand blue matched to gokatech.com (#007bff)
         brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#0b192c',
+          50: '#e6f2ff',
+          100: '#cce5ff',
+          200: '#99cbff',
+          300: '#66b0ff',
+          400: '#3396ff',
+          500: '#007bff',
+          600: '#0069d9',
+          700: '#0056b3',
+          800: '#00448c',
+          900: '#003366',
+          950: '#001f3f',
         },
-        navy: {
-          800: '#0d1b2a',
-          900: '#070f1e',
-          950: '#040913',
+        // Secondary accent (gokatech.com orange)
+        orange: {
+          400: '#ffb43d',
+          500: '#fc9d04',
+          600: '#e08a00',
+        },
+        // Dark navy ink used for headings/footer on the light theme
+        ink: {
+          700: '#1b3357',
+          800: '#152a47',
+          900: '#102039',
+          950: '#0b1830',
         },
         accent: {
-          teal: '#06b6d4',
-          cyan: '#0ea5e9',
-          amber: '#f59e0b',
+          teal: '#184d47',
+          cyan: '#007bff',
+          amber: '#fc9d04',
           emerald: '#10b981',
           purple: '#8b5cf6',
         }

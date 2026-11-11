@@ -65,14 +65,14 @@ export default function FullScreenIntroLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#040812] text-white overflow-hidden transition-all duration-700 ease-out select-none ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#EEF2F9] text-[#102039] overflow-hidden transition-all duration-700 ease-out select-none ${
         exiting ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
       aria-live="polite"
     >
       {/* Dynamic Ambient Background Lights */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute top-1/3 left-1/3 w-[350px] h-[350px] bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/3 w-[350px] h-[350px] bg-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Subtle Cyber Grid */}
       <div className="absolute inset-0 cyber-grid opacity-20 pointer-events-none" />
@@ -83,7 +83,7 @@ export default function FullScreenIntroLoader() {
         {/* Animated Glowing Logo Orb */}
         <div className="relative mb-6">
           {/* Outer Pulsing Glow */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 rounded-3xl opacity-30 blur-xl animate-pulse-glow" />
+          <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 rounded-3xl opacity-30 blur-xl animate-pulse-glow" />
 
           {/* Rotating Circular SVG Track */}
           <svg className="absolute -inset-3 w-28 h-28 -rotate-90 pointer-events-none" viewBox="0 0 100 100">
@@ -109,14 +109,14 @@ export default function FullScreenIntroLoader() {
             />
             <defs>
               <linearGradient id="intro-loader-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#38BDF8" />
+                <stop offset="0%" stopColor="#007BFF" />
                 <stop offset="100%" stopColor="#2563EB" />
               </linearGradient>
             </defs>
           </svg>
 
           {/* Central Emblem Box */}
-          <div className="relative w-22 h-22 p-3.5 rounded-2xl bg-[#091224] border border-cyan-500/30 shadow-2xl flex items-center justify-center backdrop-blur-md">
+          <div className="relative w-22 h-22 p-3.5 rounded-2xl bg-[#F3F6FB] border border-blue-600/30 shadow-2xl flex items-center justify-center backdrop-blur-md">
             <img
               src="/assets/logo.png"
               alt="GOKATECH"
@@ -130,44 +130,44 @@ export default function FullScreenIntroLoader() {
 
         {/* Brand Typography */}
         <div className="space-y-1 mb-8">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-white">
-            GOKA<span className="text-gradient">TECH</span> <span className="text-xs text-cyan-400 font-mono tracking-widest uppercase ml-1">INC</span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-[#102039]">
+            GOKA<span className="text-gradient">TECH</span> <span className="text-xs text-blue-600 font-mono tracking-widest uppercase ml-1">INC</span>
           </h1>
-          <p className="text-xs text-slate-400 tracking-wider font-medium">
+          <p className="text-xs text-slate-600 tracking-wider font-medium">
             Where Innovation Meets Excellence
           </p>
         </div>
 
         {/* High-Tech Progress Bar */}
         <div className="w-full max-w-[280px] space-y-2.5">
-          <div className="relative w-full h-1.5 rounded-full bg-slate-900 border border-slate-800 overflow-hidden shadow-inner">
+          <div className="relative w-full h-1.5 rounded-full bg-white border border-slate-200 overflow-hidden shadow-inner">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 transition-all duration-75 ease-out shadow-[0_0_12px_rgba(56,189,248,0.7)]"
+              className="h-full rounded-full bg-gradient-to-r from-blue-600 via-blue-600 to-blue-500 transition-all duration-75 ease-out shadow-[0_0_12px_rgba(56,189,248,0.7)]"
               style={{ width: `${progress}%` }}
             />
           </div>
 
           {/* Progress Percentage & Status Indicator */}
           <div className="flex items-center justify-between text-[11px] font-mono">
-            <span className="text-slate-400 tracking-wider truncate max-w-[200px]">
+            <span className="text-slate-600 tracking-wider truncate max-w-[200px]">
               {statusText}
             </span>
-            <span className="text-cyan-400 font-bold ml-2">
+            <span className="text-blue-600 font-bold ml-2">
               {progress}%
             </span>
           </div>
         </div>
 
         {/* Triple Crown & Global Reach Footnote */}
-        <div className="mt-8 flex items-center space-x-2 text-[10px] text-slate-500 bg-slate-950/60 px-3.5 py-1.5 rounded-full border border-slate-800/80">
-          <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="mt-8 flex items-center space-x-2 text-[10px] text-slate-500 bg-white/60 px-3.5 py-1.5 rounded-full border border-slate-200/80">
+          <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
           <span>Texas IT Consulting Award Winner • 5 Global Hubs</span>
         </div>
 
         {/* Quick Skip Option */}
         <button
           onClick={handleSkip}
-          className="mt-6 text-[10px] text-slate-500 hover:text-slate-300 transition-colors uppercase tracking-widest font-mono"
+          className="mt-6 text-[10px] text-slate-500 hover:text-slate-700 transition-colors uppercase tracking-widest font-mono"
         >
           [Skip Intro]
         </button>

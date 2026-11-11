@@ -42,19 +42,19 @@ export default function ServicesGrid() {
     : servicesData.filter(s => s.category === selectedCategory);
 
   return (
-    <section className="py-10 sm:py-14 bg-[#070F1E] relative">
+    <section className="py-10 sm:py-14 bg-[#FFFFFF] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-cyan-400">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600">
             <Sparkles className="w-3.5 h-3.5" />
             <span>End-to-End Technology Stack</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#102039] tracking-tight font-heading">
             Transformative Capabilities <br />
             <span className="text-gradient">Engineered for Enterprise Impact</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-600">
             From custom business ERP applications and cloud infrastructure to cutting-edge AI and mobile apps, our solutions enhance agility, optimize IT expenditure, and build sustainable competitive advantage.
           </p>
 
@@ -67,7 +67,7 @@ export default function ServicesGrid() {
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                   selectedCategory === cat
                     ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25'
-                    : 'bg-slate-900 text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
+                    : 'bg-white text-slate-600 hover:text-blue-600 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
                 {cat} {cat === 'All' ? `(${servicesData.length})` : ''}
@@ -84,38 +84,38 @@ export default function ServicesGrid() {
             return (
               <div
                 key={svc.id}
-                className="group relative rounded-2xl bg-[#0C1527] border border-slate-800 hover:border-cyan-400/60 p-7 transition-all duration-400 hover:shadow-2xl hover:shadow-cyan-500/15 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
+                className="group relative rounded-2xl bg-[#FFFFFF] border border-slate-200 hover:border-blue-600/60 p-7 transition-all duration-400 hover:shadow-2xl hover:shadow-blue-600/15 hover:-translate-y-2 flex flex-col justify-between overflow-hidden"
               >
                 {/* Glowing Top Accent Beam on Hover */}
-                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div>
                   {/* Top Icon & Category */}
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-13 h-13 p-3.5 rounded-xl bg-gradient-to-br from-blue-600/20 to-cyan-500/20 text-cyan-400 border border-cyan-500/30 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-md">
+                    <div className="w-13 h-13 p-3.5 rounded-xl bg-gradient-to-br from-blue-600/20 to-blue-600/20 text-blue-600 border border-blue-600/30 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-md">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700/50">
+                    <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-300/50">
                       {svc.category}
                     </span>
                   </div>
 
                   {/* Title */}
                   <Link to={`/services/${svc.slug}`}>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-3 font-heading">
+                    <h3 className="text-xl font-bold text-[#102039] group-hover:text-blue-600 transition-colors mb-3 font-heading">
                       {svc.title}
                     </h3>
                   </Link>
 
                   {/* Short Description */}
-                  <p className="text-xs text-slate-400 leading-relaxed mb-5">
+                  <p className="text-xs text-slate-600 leading-relaxed mb-5">
                     {svc.shortDesc}
                   </p>
 
                   {/* Key Highlights */}
                   <div className="space-y-2 mb-6">
                     {svc.features.slice(0, 3).map((feat, idx) => (
-                      <div key={idx} className="flex items-start space-x-2 text-xs text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start space-x-2 text-xs text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0 mt-0.5" />
                         <span className="line-clamp-1">{feat}</span>
                       </div>
                     ))}
@@ -123,10 +123,10 @@ export default function ServicesGrid() {
                 </div>
 
                 {/* Footer Link & Action */}
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
                   <Link
                     to={`/services/${svc.slug}`}
-                    className="text-xs font-semibold text-cyan-400 group-hover:text-cyan-300 flex items-center space-x-1 transition-colors"
+                    className="text-xs font-semibold text-blue-600 group-hover:text-blue-500 flex items-center space-x-1 transition-colors"
                   >
                     <span>View Architecture</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -134,7 +134,7 @@ export default function ServicesGrid() {
 
                   <button
                     onClick={() => openQuote(svc.title)}
-                    className="text-xs text-slate-400 hover:text-white transition-colors"
+                    className="text-xs text-slate-600 hover:text-[#102039] transition-colors"
                   >
                     Inquire
                   </button>
@@ -145,10 +145,10 @@ export default function ServicesGrid() {
         </div>
 
         {/* Bottom Callout */}
-        <div className="mt-14 p-6 rounded-2xl bg-slate-900/50 border border-slate-800 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-14 p-6 rounded-2xl bg-white/50 border border-slate-200 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-left">
-            <h4 className="text-base font-bold text-white">Need a custom engineering architecture or dedicated team?</h4>
-            <p className="text-xs text-slate-400">Our solution architects in Frisco, TX provide comprehensive assessments within 24 hours.</p>
+            <h4 className="text-base font-bold text-[#102039]">Need a custom engineering architecture or dedicated team?</h4>
+            <p className="text-xs text-slate-600">Our solution architects in Frisco, TX provide comprehensive assessments within 24 hours.</p>
           </div>
           <button
             onClick={() => openQuote()}

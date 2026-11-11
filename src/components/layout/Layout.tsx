@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
   const { openQuote } = useQuote();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#060D1A] text-slate-100 selection:bg-brand-500 selection:text-white relative">
+    <div className="min-h-screen flex flex-col bg-[#F7F9FC] text-slate-800 selection:bg-brand-500 selection:text-white relative">
       <FullScreenIntroLoader />
       <GlobalSpotlight />
       <FloatingScrollProgress />

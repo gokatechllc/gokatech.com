@@ -96,10 +96,10 @@ export default function AdminApplications() {
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white font-heading">
+          <h1 className="text-2xl font-bold text-[#102039] font-heading">
             Candidate Job Applications
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-600">
             Engineers and specialists applying via the GOKATECH talent portal
           </p>
         </div>
@@ -107,14 +107,14 @@ export default function AdminApplications() {
         <div className="flex items-center space-x-2">
           <button
             onClick={exportCSV}
-            className="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-xs text-slate-300 hover:text-white transition-colors flex items-center space-x-1.5"
+            className="px-3.5 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-xs text-slate-700 hover:text-[#102039] transition-colors flex items-center space-x-1.5"
           >
-            <Download className="w-3.5 h-3.5 text-cyan-400" />
+            <Download className="w-3.5 h-3.5 text-blue-600" />
             <span>Export CSV</span>
           </button>
           <button
             onClick={fetchApplications}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-white"
+            className="p-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-600 hover:text-[#102039]"
             title="Refresh"
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -123,7 +123,7 @@ export default function AdminApplications() {
       </div>
 
       {/* Filter and Search */}
-      <div className="p-4 rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="p-4 rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="relative w-full sm:w-80">
           <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
           <input
@@ -131,16 +131,16 @@ export default function AdminApplications() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search candidate name, email, job..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:border-cyan-400 focus:outline-none"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] placeholder-slate-500 text-xs focus:border-blue-600 focus:outline-none"
           />
         </div>
 
         <div className="flex items-center space-x-2 w-full sm:w-auto">
-          <span className="text-xs text-slate-400">Status:</span>
+          <span className="text-xs text-slate-600">Status:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+            className="px-3 py-2 rounded-xl bg-white border border-slate-300 text-[#102039] text-xs focus:border-blue-600 focus:outline-none"
           >
             <option value="All">All Statuses</option>
             <option value="Pending">Pending</option>
@@ -154,10 +154,10 @@ export default function AdminApplications() {
       </div>
 
       {/* Applications Table */}
-      <div className="rounded-2xl bg-[#0B1528] border border-blue-500/20 shadow-xl overflow-hidden">
+      <div className="rounded-2xl bg-[#FFFFFF] border border-blue-500/20 shadow-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-900/90 text-slate-400 border-b border-slate-800 uppercase tracking-wider text-[10px]">
+            <thead className="bg-white/90 text-slate-600 border-b border-slate-200 uppercase tracking-wider text-[10px]">
               <tr>
                 <th className="py-3.5 px-4">Candidate</th>
                 <th className="py-3.5 px-4">Applied Role</th>
@@ -167,7 +167,7 @@ export default function AdminApplications() {
                 <th className="py-3.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80 text-slate-300">
+            <tbody className="divide-y divide-slate-200/80 text-slate-700">
               {filteredApps.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-8 text-center text-slate-500">
@@ -176,21 +176,21 @@ export default function AdminApplications() {
                 </tr>
               ) : (
                 filteredApps.map((a) => (
-                  <tr key={a.id} className="hover:bg-slate-900/50 transition-colors">
+                  <tr key={a.id} className="hover:bg-white/50 transition-colors">
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-white">{a.full_name}</div>
-                      <div className="text-[11px] text-slate-400">{a.email}</div>
+                      <div className="font-bold text-[#102039]">{a.full_name}</div>
+                      <div className="text-[11px] text-slate-600">{a.email}</div>
                       <div className="text-[10px] text-slate-500">{a.phone || 'No phone'}</div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="font-semibold text-cyan-300">{a.job_title}</span>
+                      <span className="font-semibold text-blue-500">{a.job_title}</span>
                       <div className="text-[10px] text-slate-500 mt-0.5 flex items-center space-x-1">
-                        <FileText className="w-3 h-3 text-slate-400" />
+                        <FileText className="w-3 h-3 text-slate-600" />
                         <span>{a.resume_file_name || 'Resume.pdf'}</span>
                       </div>
                     </td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">
+                      <span className="px-2 py-0.5 rounded bg-white text-slate-700 border border-slate-200">
                         {a.experience_years || 'Experienced'}
                       </span>
                     </td>
@@ -202,7 +202,7 @@ export default function AdminApplications() {
                           a.status === 'Shortlisted'
                             ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                             : a.status === 'Interview Scheduled'
-                            ? 'bg-blue-500/10 text-cyan-400 border-blue-500/30'
+                            ? 'bg-blue-500/10 text-blue-600 border-blue-500/30'
                             : a.status === 'Offer Extended'
                             ? 'bg-purple-500/10 text-purple-400 border-purple-500/30'
                             : a.status === 'Rejected'
@@ -224,7 +224,7 @@ export default function AdminApplications() {
                     <td className="py-3.5 px-4 text-right space-x-2">
                       <button
                         onClick={() => setSelectedApp(a)}
-                        className="p-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+                        className="p-1.5 rounded-lg bg-slate-100 text-slate-700 hover:text-[#102039] hover:bg-slate-200 transition-colors"
                         title="View Candidate Profile"
                       >
                         <Eye className="w-3.5 h-3.5" />
@@ -247,30 +247,30 @@ export default function AdminApplications() {
 
       {/* Candidate Modal */}
       {selectedApp && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg rounded-2xl bg-[#0B1528] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-lg rounded-2xl bg-[#FFFFFF] border border-blue-500/30 p-6 space-y-4 shadow-2xl">
             <button
               onClick={() => setSelectedApp(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-600 hover:text-[#102039]"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-white font-heading">
+            <h3 className="text-lg font-bold text-[#102039] font-heading">
               Candidate Application Details
             </h3>
 
-            <div className="space-y-2 text-xs bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-              <p><strong className="text-slate-400">Candidate Name:</strong> <span className="text-white font-bold">{selectedApp.full_name}</span></p>
-              <p><strong className="text-slate-400">Role:</strong> <span className="text-cyan-400 font-semibold">{selectedApp.job_title}</span></p>
-              <p><strong className="text-slate-400">Email:</strong> <a href={`mailto:${selectedApp.email}`} className="text-cyan-400 hover:underline">{selectedApp.email}</a></p>
-              <p><strong className="text-slate-400">Phone:</strong> <a href={`tel:${selectedApp.phone}`} className="text-cyan-400 hover:underline">{selectedApp.phone || 'N/A'}</a></p>
-              <p><strong className="text-slate-400">Experience:</strong> <span className="text-slate-200">{selectedApp.experience_years}</span></p>
-              <p><strong className="text-slate-400">Resume File:</strong> <span className="text-emerald-400 font-mono">{selectedApp.resume_file_name}</span></p>
+            <div className="space-y-2 text-xs bg-white/80 p-4 rounded-xl border border-slate-200">
+              <p><strong className="text-slate-600">Candidate Name:</strong> <span className="text-[#102039] font-bold">{selectedApp.full_name}</span></p>
+              <p><strong className="text-slate-600">Role:</strong> <span className="text-blue-600 font-semibold">{selectedApp.job_title}</span></p>
+              <p><strong className="text-slate-600">Email:</strong> <a href={`mailto:${selectedApp.email}`} className="text-blue-600 hover:underline">{selectedApp.email}</a></p>
+              <p><strong className="text-slate-600">Phone:</strong> <a href={`tel:${selectedApp.phone}`} className="text-blue-600 hover:underline">{selectedApp.phone || 'N/A'}</a></p>
+              <p><strong className="text-slate-600">Experience:</strong> <span className="text-slate-800">{selectedApp.experience_years}</span></p>
+              <p><strong className="text-slate-600">Resume File:</strong> <span className="text-emerald-400 font-mono">{selectedApp.resume_file_name}</span></p>
               
               {selectedApp.linkedin_url && (
                 <p>
-                  <strong className="text-slate-400">LinkedIn:</strong>{' '}
+                  <strong className="text-slate-600">LinkedIn:</strong>{' '}
                   <a href={selectedApp.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline inline-flex items-center space-x-1">
                     <span>{selectedApp.linkedin_url}</span>
                     <ExternalLink className="w-3 h-3 ml-1 inline" />
@@ -280,8 +280,8 @@ export default function AdminApplications() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Candidate Cover Note</label>
-              <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 text-xs text-slate-300 leading-relaxed max-h-36 overflow-y-auto">
+              <label className="block text-xs font-semibold text-slate-700 mb-1">Candidate Cover Note</label>
+              <div className="p-3.5 rounded-xl bg-white/70 border border-slate-200 text-xs text-slate-700 leading-relaxed max-h-36 overflow-y-auto">
                 {selectedApp.cover_note || 'No cover note submitted.'}
               </div>
             </div>
@@ -297,7 +297,7 @@ export default function AdminApplications() {
 
               <button
                 onClick={() => setSelectedApp(null)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold"
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-[#102039] text-xs font-semibold"
               >
                 Close
               </button>

@@ -245,15 +245,15 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
 
     return (
       <div className={`turnstile-wrapper w-full my-3 ${className}`}>
-        <div className="w-full rounded-2xl bg-[#08101E]/90 border border-slate-800/80 hover:border-cyan-500/40 p-3 sm:p-4 transition-all duration-300 shadow-inner group">
+        <div className="w-full rounded-2xl bg-[#FFFFFF]/90 border border-slate-200/80 hover:border-blue-600/40 p-3 sm:p-4 transition-all duration-300 shadow-inner group">
 
           {/* Header pill label */}
-          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800/80 text-[11px]">
-            <div className="flex items-center space-x-2 text-slate-300">
-              <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
-              <span className="font-semibold text-white">Security Verification</span>
+          <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-200/80 text-[11px]">
+            <div className="flex items-center space-x-2 text-slate-700">
+              <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
+              <span className="font-semibold text-[#102039]">Security Verification</span>
             </div>
-            <div className="flex items-center space-x-1.5 text-[10px] text-cyan-400/80 font-mono bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/20">
+            <div className="flex items-center space-x-1.5 text-[10px] text-blue-600/80 font-mono bg-blue-50/40 px-2 py-0.5 rounded border border-blue-600/20">
               <Lock className="w-2.5 h-2.5" />
               <span>Full-Width Turnstile</span>
             </div>
@@ -267,8 +267,8 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
 
           {/* Loading state indicator */}
           {showSpinner && (
-            <div className="flex items-center justify-center space-x-2 text-[11px] text-slate-400 py-3">
-              <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
+            <div className="flex items-center justify-center space-x-2 text-[11px] text-slate-600 py-3">
+              <RefreshCw className="w-3.5 h-3.5 animate-spin text-blue-600" />
               <span>Connecting to Cloudflare Turnstile verification network...</span>
             </div>
           )}
@@ -283,7 +283,7 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
               <button
                 type="button"
                 onClick={handleRetry}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition-colors"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-600 text-white font-semibold transition-colors"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Retry verification</span>
@@ -292,8 +292,8 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
           )}
 
           {/* Security badge footer */}
-          <div className="flex items-center justify-between pt-2.5 mt-2 border-t border-slate-900 text-[10px] text-slate-500">
-            <span className="text-slate-400">Anti-Spam &amp; Automated Bot Defense</span>
+          <div className="flex items-center justify-between pt-2.5 mt-2 border-t border-slate-200 text-[10px] text-slate-500">
+            <span className="text-slate-600">Anti-Spam &amp; Automated Bot Defense</span>
             <span className="text-[9px] uppercase tracking-wider text-slate-500 font-mono">Cloudflare Powered</span>
           </div>
         </div>
