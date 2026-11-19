@@ -3,6 +3,7 @@ import { ShieldCheck, Building2, ExternalLink, Sparkles, CheckCircle2, ArrowRigh
 import { partnersData, Partner } from '../data/partnersData';
 import { Link } from 'react-router-dom';
 import { useQuote } from '../context/QuoteContext';
+import { PartnersArt } from '../components/common/HeaderArt';
 
 export default function PartnersPage() {
   const { openQuote } = useQuote();
@@ -18,7 +19,8 @@ export default function PartnersPage() {
     <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F7F9FC] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl mb-8 sm:mb-10 space-y-3">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 mb-8 sm:mb-10">
+          <div className="max-w-3xl space-y-3 flex-1">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Associates & Strategic Alliances</span>
@@ -30,6 +32,10 @@ export default function PartnersPage() {
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
             From Fortune 500 financial and healthcare institutions to global technology vendors and premier staffing alliances, we cultivate 100% referenceable partnerships built on trust, engineering rigor, and measurable outcomes.
           </p>
+          </div>
+          <div className="hidden lg:block w-[42%] max-w-[460px] shrink-0" aria-hidden="true">
+            <PartnersArt />
+          </div>
         </div>
 
         {/* Filter Pills */}

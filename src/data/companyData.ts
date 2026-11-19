@@ -38,20 +38,20 @@ export const companyInfo = {
   ],
   differentiators: [
     {
-      title: 'Deep Domain & Tech Expertise',
-      description: 'Cross-functional engineering squads proficient in modern full-stack architectures, ERP systems, AI/ML pipelines, and cloud native microservices.'
+      title: 'Proven Domain & Engineering Mastery',
+      description: 'Multi-disciplinary engineering teams highly skilled across modern full-stack frameworks, ERP platforms, AI/ML workflows, and cloud-native services.'
     },
     {
-      title: 'Strong Strategic Vendor Alliances',
-      description: 'Formal collaborations with leading global technology vendors (Microsoft, SAP, AWS, Google Cloud) amplify our capability to deliver unmatched speed-to-value.'
+      title: 'Trusted Global Technology Partnerships',
+      description: 'Certified partnerships with major enterprise technology providers (Microsoft, SAP, AWS, Google Cloud) strengthen our ability to accelerate measurable delivery.'
     },
     {
-      title: 'High-Performance Agile Pods',
-      description: 'Self-governing, agile project squads aligned to measurable enterprise KPIs and dedicated SLA guarantees with daily transparent communication.'
+      title: 'Autonomous High-Velocity Squads',
+      description: 'Independent, cross-functional delivery teams driven by clear enterprise KPIs and firm SLA commitments through daily open communication.'
     },
     {
-      title: '100% Referenceable Track Record',
-      description: 'Every client engagement is built on integrity, predictability, and measurable ROI. We take pride in 100% referenceable relationships across Fortune 500 accounts.'
+      title: '100% Verifiable Client Success',
+      description: 'Each partnership we deliver rests on transparency, consistency, and quantifiable value. We remain proud of fully verifiable relationships spanning Fortune 500 enterprises.'
     }
   ],
   processSteps: [

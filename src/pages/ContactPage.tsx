@@ -18,6 +18,7 @@ import { companyInfo } from '../data/companyData';
 import { supabase } from '../lib/supabase';
 import { LinkedInIcon, TwitterXIcon, FacebookIcon, InstagramIcon, YouTubeIcon } from '../components/common/SocialIcons';
 import TurnstileWidget from '../components/common/TurnstileWidget';
+import { ContactArt } from '../components/common/HeaderArt';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -71,7 +72,8 @@ export default function ContactPage() {
     <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F7F9FC] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl mb-8 sm:mb-10 space-y-3">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 mb-8 sm:mb-10">
+          <div className="max-w-3xl space-y-3 flex-1">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600">
             <Globe className="w-3.5 h-3.5" />
             <span>Connect with GOKATECH</span>
@@ -83,6 +85,10 @@ export default function ContactPage() {
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
             Whether you are exploring a new enterprise IT architecture, requesting technical staffing, or seeking career opportunities, our teams in Texas, New Jersey, Indiana, Germany, and India are here to help.
           </p>
+          </div>
+          <div className="hidden lg:block w-[42%] max-w-[460px] shrink-0" aria-hidden="true">
+            <ContactArt />
+          </div>
         </div>
 
         {/* 2-Column: Form & Headquarters Card */}
@@ -377,11 +383,11 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {officesData.map((office) => (
               <div
                 key={office.id}
-                className="p-6 rounded-2xl bg-[#FFFFFF] border border-slate-200 hover:border-slate-300 transition-all flex flex-col justify-between"
+                className="basis-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)] p-6 rounded-2xl bg-[#FFFFFF] border border-slate-200 hover:border-slate-300 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">

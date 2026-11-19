@@ -3,6 +3,7 @@ import { companyInfo } from '../data/companyData';
 import { officesData } from '../data/officesData';
 import { Link } from 'react-router-dom';
 import { useQuote } from '../context/QuoteContext';
+import { AboutArt } from '../components/common/HeaderArt';
 
 export default function AboutPage() {
   const { openQuote } = useQuote();
@@ -10,7 +11,8 @@ export default function AboutPage() {
     <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F7F9FC] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Breadcrumbs & Title */}
-        <div className="max-w-3xl mb-8 sm:mb-10 space-y-3">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 mb-8 sm:mb-10">
+          <div className="max-w-3xl space-y-3 flex-1">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600">
             <Sparkles className="w-3.5 h-3.5" />
             <span>About GOKATECH INC</span>
@@ -22,6 +24,10 @@ export default function AboutPage() {
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
             From humble beginnings as an agile startup to an internationally recognized IT consulting leader, GOKATECH empowers Fortune 500 organizations and hyper-growth enterprises to stay ahead in an ever-evolving digital landscape.
           </p>
+          </div>
+          <div className="hidden lg:block w-[42%] max-w-[460px] shrink-0" aria-hidden="true">
+            <AboutArt />
+          </div>
         </div>
 
         {/* Story Section with Hero Image */}

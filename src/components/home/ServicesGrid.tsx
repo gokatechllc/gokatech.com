@@ -37,9 +37,12 @@ export default function ServicesGrid() {
 
   const categories = ['All', 'Enterprise', 'Engineering', 'Intelligence', 'Infrastructure'];
 
+  // Hide the "24/7 Managed IT Services" card on the home page (still available elsewhere)
+  const visibleServices = servicesData.filter(s => s.id !== 'managed-services');
+
   const filteredServices = selectedCategory === 'All'
-    ? servicesData
-    : servicesData.filter(s => s.category === selectedCategory);
+    ? visibleServices
+    : visibleServices.filter(s => s.category === selectedCategory);
 
   return (
     <section className="py-10 sm:py-14 bg-[#FFFFFF] relative">
@@ -70,7 +73,7 @@ export default function ServicesGrid() {
                     : 'bg-white text-slate-600 hover:text-blue-600 hover:bg-slate-100 border border-slate-200'
                 }`}
               >
-                {cat} {cat === 'All' ? `(${servicesData.length})` : ''}
+                {cat} {cat === 'All' ? `(${visibleServices.length})` : ''}
               </button>
             ))}
           </div>

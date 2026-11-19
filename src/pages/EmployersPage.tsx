@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Building2, Users, CheckCircle2, ShieldCheck, Send, Sparkles, Clock, Award } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import TurnstileWidget from '../components/common/TurnstileWidget';
+import { EmployersArt } from '../components/common/HeaderArt';
 
 export default function EmployersPage() {
   const [formData, setFormData] = useState({
@@ -56,7 +57,8 @@ export default function EmployersPage() {
     <div className="pt-8 pb-10 sm:pt-10 sm:pb-12 bg-[#F7F9FC] animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-3xl mb-8 sm:mb-10 space-y-3">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 mb-8 sm:mb-10">
+          <div className="max-w-3xl space-y-3 flex-1">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-600">
             <Building2 className="w-3.5 h-3.5" />
             <span>Workforce & Staffing Solutions</span>
@@ -68,6 +70,10 @@ export default function EmployersPage() {
           <p className="text-base sm:text-lg text-slate-700 leading-relaxed">
             From specialized contract engineers to fully managed dedicated offshore/nearshore delivery pods, GOKATECH solves critical talent shortages with pre-vetted, certified IT professionals.
           </p>
+          </div>
+          <div className="hidden lg:block w-[42%] max-w-[460px] shrink-0" aria-hidden="true">
+            <EmployersArt />
+          </div>
         </div>
 
         {/* Staffing Models Grid */}

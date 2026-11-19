@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight, Search, Award, Briefcase, ChevronRight, CheckCircle2, Globe } from 'lucide-react';
 import { useQuote } from '../../context/QuoteContext';
+import { HeroArt } from '../common/HeaderArt';
 
 export default function HeroSection() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -159,7 +160,10 @@ export default function HeroSection() {
 
           {/* Right Column: Floating Accolade Badges */}
           <div className="lg:col-span-5 relative hidden lg:block">
-            <div className="relative mx-auto max-w-md lg:max-w-none h-full min-h-[340px]">
+            <div className="relative mx-auto max-w-md lg:max-w-none h-full min-h-[380px] flex items-center">
+
+              {/* Base dashboard illustration */}
+              <HeroArt className="w-full opacity-95" />
 
               {/* Floating Badge 1: Award */}
               <div className="absolute top-6 right-2 bg-white/95 backdrop-blur-md border border-amber-300/60 rounded-2xl p-3.5 shadow-2xl flex items-center space-x-3 animate-float max-w-[250px]">
